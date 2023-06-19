@@ -21,7 +21,7 @@ export function webpackConfig(options: BuildOptions): webpack.Configuration {
         module: {
             rules: webpackLoaders(),
         },
-        resolve: webpackResolvers(),
+        resolve: webpackResolvers(options),
         devServer: isDev ? webpackDevServer(options) : undefined
     }
 }
