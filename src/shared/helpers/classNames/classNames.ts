@@ -1,7 +1,14 @@
+/**
+ * ClassNames
+ * @param { string } cls - base classname
+ * @param { Record<string, boolean|string> } modes - mapping of modes to either boolean or string for dynamic classnames
+ * @param { string[] } additional - additional classes to add
+ * @returns { string }
+ */
 export function classNames(
     cls: string,
-    modes: Record<string, boolean | string>,
-    additional: Array<string>
+    modes: Record<string, boolean | string> = {},
+    additional: Array<string> = []
 ): string {
     const classNamesByModes = Object.entries(modes)
         .filter(([className, value]) => !!value)
@@ -9,7 +16,7 @@ export function classNames(
 
     return [
         cls,
-        ...additional,
+        ...additional.filter(Boolean),
         ...classNamesByModes
     ]
         .join(' ')
